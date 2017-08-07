@@ -338,7 +338,9 @@ int main(int argc, char **argv)
 	}
 
 	get_mine(dev);
-
+	
+	// get mac_address of all sessions
+	
 	printf("get sender1's MAC starts~ \n");
 	sendarp(pcd, &sender_IP1, &sender_MAC1);
 
@@ -350,9 +352,14 @@ int main(int argc, char **argv)
 	
 	printf("get target2's MAC starts~ \n");
 	sendarp(pcd, &target_IP2, &target_MAC2);
+	
+	
+	// infect all sessions
 
 	Infection(pcd, &sender_IP1, &sender_MAC1, &target_IP1, &target_MAC1);
 	Infection(pcd, &sender_IP2, &sender_MAC2, &target_IP2, &target_MAC2);
+	
+	// relay the caught packets
 
 	Relay(pcd);
 
